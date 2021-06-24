@@ -1,20 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class MazeSpawner : MonoBehaviour
 {
+    public static MazeSpawner instance;
     public Cell cellPrefab;
     public Vector3 cellSize = new Vector3(1,1,0);
     public HintRenderer hintRenderer;
 
     public NavMeshSurface navMeshSurface;
     public Maze maze;
-
+    
     public Transform player;
-    public Transform enemy;
     public Transform mazeCells;
     private void Start()
     {
+        instance = this;
         player.localPosition = new Vector3(5f, 1.4f, 5f);
         player.localRotation = Quaternion.identity;
         var generator = new MazeGenerator();
@@ -30,10 +32,10 @@ public class MazeSpawner : MonoBehaviour
                 c.WallBottom.SetActive(maze.cells[x, y].WallBottom);
             }
         }
-        
+
+        hintRenderer.DrawPath();
+
         //Update NavMesh
         navMeshSurface.BuildNavMesh();
-        
-        hintRenderer.DrawPath();
     }
 }

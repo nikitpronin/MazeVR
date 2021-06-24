@@ -8,10 +8,11 @@ public class Vampire : MonoBehaviour
 {
     private NavMeshAgent _enemyNavMesh;
 
-    public Transform _player;
+    private Transform _player;
     // Start is called before the first frame update
     void Start()
     {
+        _player = GameObject.FindWithTag("Player").transform;
         _enemyNavMesh = GetComponent<NavMeshAgent>();
         if(!_player){
             Debug.Log("Make sure your player is tagged!!");
@@ -21,6 +22,6 @@ public class Vampire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     //   _enemyNavMesh.destination = _player.position;
+        _enemyNavMesh.destination = _player.position;
     }
 }

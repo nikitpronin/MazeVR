@@ -9,7 +9,6 @@ public class HintRenderer : MonoBehaviour
 
     private void Start()
     {
-        
         _componentLineRenderer = GetComponent<LineRenderer>();
     }
 
